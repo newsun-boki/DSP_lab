@@ -1,4 +1,6 @@
-*.wav
-*.pcm
-*.txt
+/asset/*.wav
+/output/*.pcm
+/energy/*.txt
+/corpus/*.wav
+/zeroCrossingRate/*.txt
 !/corpus/10.wav
