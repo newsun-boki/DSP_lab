@@ -1,0 +1,4 @@
+*.wav
+*.pcm
+*.txt
+!/corpus/10.wav
