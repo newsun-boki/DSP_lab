@@ -133,21 +133,21 @@ def pcm2wav(pcm_file, wav_file, channels=1, sampwidth=16, sample_rate=16000):
 
 if __name__ == "__main__":
     color.Print.yellow('==============================welcome to use audio analysis system================================')
-    wav_path = "./asset/test.wav"
+    wav_path = "/home/newsun/DSP/DSPyuyin/4/[2021-10-23][14-02-15].wav"
     retry_flag = 1
     while retry_flag == 1:
-        if input('record now(print 0) or read from wav(print 1) : ') == '0' :
-            r = R.Recorder()
-            times = int(input('please input how many seconds you wanna record :'))
-            print(type(times))
-            r.settime(times)
-            r.record()
-            r.savewav(wav_path)
-        else :
-            wav_path = input('Please input path of .wav : ')
-        if not os.path.exists(wav_path):
-            color.Print.red("No Such File")
-            exit()
+        # if input('record now(print 0) or read from wav(print 1) : ') == '0' :
+        #     r = R.Recorder()
+        #     times = int(input('please input how many seconds you wanna record :'))
+        #     print(type(times))
+        #     r.settime(times)
+        #     r.record()
+        #     r.savewav(wav_path)
+        # else :
+        #     wav_path = input('Please input path of .wav : ')
+        # if not os.path.exists(wav_path):
+        #     color.Print.red("No Such File")
+        #     exit()
         
         #播放器相关模块
         player = P.Player(wav_path)
@@ -172,11 +172,11 @@ if __name__ == "__main__":
     f.close()
 
     time = np.arange(0,nframes)*(1.0/framerate)
+    plt.subplot(2,  1,  1)  
     plt.rcParams['font.sans-serif']=['SimHei'] #显示中文标签
     plt.rcParams['axes.unicode_minus']=False   
     plt.plot(range(len(wave_data)),wave_data)
     plt.xlabel('time')
-    plt.show()
 
     #计算短时能量
     energy = calEnergy(wave_data)
@@ -189,8 +189,22 @@ if __name__ == "__main__":
     with open("./zeroCrossingRate/" + output_index + "_zero.txt","w") as f :
         for zcr in zeroCrossingRate :
             f.write(str(zcr) + "\n")
+    np.fft.fft
     #进行端点检测
     N = endPointDetect(wave_data, energy, zeroCrossingRate)
+    i=0
+    while i < len(N):
+        if N[i+1] - N[i] > 10:
+            break
+        i = i + 2
+    if i >= len(N) - 1:
+        exit(0)
+
+    energy = energy[N[i]:N[i + 1]]
+    plt.subplot(2,  1,  2) 
+    plt.plot(len(energy),energy)
+    plt.show()
+    
     # 输出为 pcm 格式
     with open("./output/"+ output_index + "_test.pcm", "wb") as f :
         i = 0
@@ -204,3 +218,7 @@ if __name__ == "__main__":
     color.Print.green('playing the result wav now')
     player = P.Player("./output/"+ output_index + "_test.wav")
     player.play()
+    
+
+    #SVM分类器
+    
