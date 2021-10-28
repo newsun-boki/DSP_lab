@@ -80,7 +80,7 @@ def endPointDetect(wave_data, energy, zeroCrossingRate) :
         if flag == 1 and energy[i] < MH :
             A.append(i)
             flag = 0
-    print("较高能量阈值，计算后的浊音A:" + str(A))
+    # print("较高能量阈值，计算后的浊音A:" + str(A))
 
     # 利用较小能量阈值 ML 进行第二步能量检测
     for j in range(len(A)) :
@@ -93,7 +93,7 @@ def endPointDetect(wave_data, energy, zeroCrossingRate) :
             while i > 0 and energy[i] > ML :
                 i = i - 1
             B.append(i)
-    print("较低能量阈值，增加一段语言B:" + str(B))
+    # print("较低能量阈值，增加一段语言B:" + str(B))
 
     # 利用过零率进行最后一步检测
     for j in range(len(B)) :
@@ -106,7 +106,7 @@ def endPointDetect(wave_data, energy, zeroCrossingRate) :
             while i > 0 and zeroCrossingRate[i] >= 3 * Zs :
                 i = i - 1
             C.append(i)
-    print("过零率阈值，最终语音分段C:" + str(C))
+    # print("过零率阈值，最终语音分段C:" + str(C))
     return C
 
 def pcm2wav(pcm_file, wav_file, channels=1, sampwidth=16, sample_rate=16000):
