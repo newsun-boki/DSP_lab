@@ -69,6 +69,7 @@ feature
 ```
 clfmodels
 ├── dtmodel.py  决策树  
+├── dtmodel_pca.py  决策树加主成分分析
 ├── MNBmodule.py    贝叶斯分类器
 ├── rfcmodel.py     随机森林
 ├── svm_pca.py  支持向量机加主成分分析
@@ -92,3 +93,12 @@ accuracy:0.8266871165644172
 ```
 即为准确率。
 ~~这里其实使用测试集当训练集，你也可以自己split一下。~~
+
+| 模型 | 准确率(%) |
+|---|---|
+| SVM | 76.82 |
+| SVM+PCA | 88.61 |
+| MVBmodule | 59.96 |
+| rfcmodel | 90.13 |
+| dtmodel | 59.20 |
+| dtmodel+PCA | 50.13 |
