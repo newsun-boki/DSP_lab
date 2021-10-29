@@ -33,7 +33,7 @@ with open('svm.pickle','rb') as fr:
 f = 0
 t = 0
 for i in range(len(energys)-2):
-    result = rfcmodel.predict(energys[i:i + 1])
+    result = svm_clf.predict(energys[i:i + 1])
     if(result == nums[i]):
         t = t + 1 
     else:
