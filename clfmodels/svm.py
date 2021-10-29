@@ -1,9 +1,22 @@
 from sklearn.svm import SVC
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.tree import export_graphviz
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.naive_bayes import MultinomialNB
+
+
+
 import numpy as np
 import pickle
 #加载特征向量
-energys = np.loadtxt("./feature/energys_conv.txt")
-nums = np.loadtxt("./feature/nums.txt")
+energys = np.loadtxt("/home/newsun/DSP/DSP_lab/feature/energys_conv.txt")
+nums = np.loadtxt("/home/newsun/DSP/DSP_lab/feature/nums.txt")
+
+
+
+
+# with open(r'data.dot','w') as f:
+#     f = export_graphviz(dtmodel, out_file=f)
 
 #训练
 clf = SVC(kernel='rbf',decision_function_shape='ovo').fit(energys,nums)
@@ -20,7 +33,7 @@ with open('svm.pickle','rb') as fr:
 f = 0
 t = 0
 for i in range(len(energys)-2):
-    result = svm_clf.predict(energys[i:i + 1])
+    result = rfcmodel.predict(energys[i:i + 1])
     if(result == nums[i]):
         t = t + 1 
     else:

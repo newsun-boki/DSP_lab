@@ -4,8 +4,8 @@ import pickle
 from sklearn.decomposition import PCA
 
 #加载特征向量
-energys = np.loadtxt("./feature/energys_conv.txt")
-nums = np.loadtxt("./feature/nums.txt")
+energys = np.loadtxt("/home/newsun/DSP/DSP_lab/feature/energys_conv.txt")
+nums = np.loadtxt("/home/newsun/DSP/DSP_lab/feature/nums.txt")
 
 #训练
 energys_pca = PCA(n_components=20).fit_transform(energys)
