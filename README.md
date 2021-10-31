@@ -74,6 +74,8 @@ clfmodels
 ├── rfcmodel.py     随机森林
 ├── svm_pca.py  支持向量机加主成分分析
 └── svm.py      支持向量机
+└── mlp.py      多层感知机
+└── plotcurve.py      绘制学习曲线
 ```
 可以简单的通过运行文件得到结果。s
 **例如：使用支持向量机**
@@ -102,3 +104,4 @@ accuracy:0.8266871165644172
 | rfcmodel | 90.13 |
 | dtmodel | 59.20 |
 | dtmodel+PCA | 50.13 |
+| MLP | 82.1 |
